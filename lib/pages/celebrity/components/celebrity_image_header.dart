@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/components/common.dart';
 import 'package:flutter_template/components/components.dart';
 import 'package:flutter_template/models/celebrity.dart';
+import 'package:flutter_template/ui/favourable_match.dart';
 
 class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
   final double minExtent;
@@ -13,6 +14,7 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         SizedBox.expand(
           child: Hero(
@@ -54,6 +56,9 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
             ),
           ),
         ),
+        Positioned(
+            bottom: SizeConfig.blockSizeVertical * 15,
+            child: FavourableMatch(celebrity: celebrity,))
       ],
     );
   }
