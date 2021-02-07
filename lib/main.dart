@@ -34,7 +34,12 @@ class MyApp extends StatelessWidget {
                 blurRadius: 5
             )
           ]),
+          button: TextStyle(color: Color(0xFF4b2e68))
         ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Color(0xFFe7e7e7),
+        ),
+
         backgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(

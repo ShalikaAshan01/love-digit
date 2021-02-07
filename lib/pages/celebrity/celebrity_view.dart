@@ -17,7 +17,6 @@ class CelebrityView extends StatefulWidget {
 
 class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateMixin {
   double imageHeight = SizeConfig.screenHeight  * 1.1;
-  // final animationDuration = Duration(milliseconds: 1000);
   final celebrity = Celebrity();
   final scrollController = ScrollController();
   bool showAppBarIcons = false;
@@ -27,7 +26,7 @@ class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateM
   void initState() {
     super.initState();
     animationController = AnimationController(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 300),
         vsync: this
     );
     //wait til hero animation finished
@@ -85,14 +84,6 @@ class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateM
               onPressed: (){},
               ),
             ),
-
-            // buildRightIcon(context,
-            //     iconData: MaterialCommunityIcons.dots_horizontal,
-            //     onPressed: (){
-            //   _controller.forward();
-            //   print("forward.....");
-            //     }
-            // ),
           ],
         ),
       ),
@@ -109,7 +100,7 @@ class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateM
               floating: true,
             delegate:CelebrityImageHeader(0, imageHeight,showAppBarIcons),
           ),
-          SliverFillRemaining(
+          SliverToBoxAdapter(
               child: CelebrityContent()),
         ],
     );
