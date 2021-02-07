@@ -6,10 +6,6 @@ import 'components/app_brand.dart';
 
 void main() => runApp(
     MyApp()
-  // DevicePreview(
-  //   enabled: false,
-  //   builder: (context) => MyApp(), // Wrap your app
-  // ),
 );
 
 class MyApp extends StatelessWidget {

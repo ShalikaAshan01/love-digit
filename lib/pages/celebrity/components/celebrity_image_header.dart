@@ -20,7 +20,6 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
           child: Hero(
             tag: Celebrity().id,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(circularBorderRadius),
               child: Image.asset(
                 Celebrity().image,
                 fit: BoxFit.cover,
