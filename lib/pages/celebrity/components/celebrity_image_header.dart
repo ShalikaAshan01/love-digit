@@ -4,7 +4,7 @@ import 'package:flutter_template/components/components.dart';
 import 'package:flutter_template/models/celebrity.dart';
 import 'package:flutter_template/ui/favourable_match.dart';
 
-class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
+class CelebrityImageHeader extends SliverPersistentHeaderDelegate {
   final double minExtent;
   final double maxExtent;
   final celebrity = Celebrity();
@@ -12,7 +12,8 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
   final bool showAppBarIcons;
   CelebrityImageHeader(this.minExtent, this.maxExtent, this.showAppBarIcons);
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -39,7 +40,7 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
           ),
         ),
         Positioned(
-          left: SizeConfig.blockSizeHorizontal *2,
+          left: SizeConfig.blockSizeHorizontal * 2,
           top: SizeConfig.blockSizeVertical * 20,
           child: buildText(context),
         ),
@@ -50,28 +51,43 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate{
           child: Container(
             height: 36,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topRight: Radius.circular(circularBorderRadius),topLeft: Radius.circular(circularBorderRadius)),
-                color: Theme.of(context).backgroundColor
-            ),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(circularBorderRadius),
+                    topLeft: Radius.circular(circularBorderRadius)),
+                color: Theme.of(context).backgroundColor),
           ),
         ),
         Positioned(
             bottom: SizeConfig.blockSizeVertical * 15,
-            child: FavourableMatch(celebrity: celebrity,))
+            child: FavourableMatch(
+              celebrity: celebrity,
+            ))
       ],
     );
   }
 
-  Widget buildText(BuildContext context){
+  Widget buildText(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Hero(
             tag: "name-${celebrity.id}",
-            child: Text(celebrity.name,style: Theme.of(context).textTheme.headline5.copyWith(color: Colors.white),)),
+            child: Text(
+              celebrity.name,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  .copyWith(color: Colors.white),
+            )),
         Hero(
             tag: "type-${celebrity.id}",
-            child: Text(celebrity.type,style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.w300,color: Colors.white),)),
+            child: Text(
+              celebrity.type,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(fontWeight: FontWeight.w300, color: Colors.white),
+            )),
       ],
     );
   }

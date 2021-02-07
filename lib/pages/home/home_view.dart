@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
     final aspectRatio = screenSize.aspectRatio;
     final imageHeight = screenSize.height * 0.6;
     final imageWidth = imageHeight * aspectRatio;
-    final duration =  Duration(seconds: 1);
+    final duration = Duration(seconds: 1);
 
     return WillPopScope(
       onWillPop: () {
@@ -29,61 +29,86 @@ class HomeView extends StatelessWidget {
                 width: imageWidth,
                 height: imageHeight,
                 child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, PageRouteBuilder(
-                      transitionDuration: duration,
-                      reverseTransitionDuration: duration,
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        final curveAnimation= CurvedAnimation(
-                          parent:  animation,
-                          curve:  Interval(0,0.5)
-                        );
-                        return FadeTransition(
-                            opacity: curveAnimation,
-                            child: CelebrityView(
-                              duration: duration,
-                            ));
-                      },));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: duration,
+                          reverseTransitionDuration: duration,
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            final curveAnimation = CurvedAnimation(
+                                parent: animation, curve: Interval(0, 0.5));
+                            return FadeTransition(
+                                opacity: curveAnimation,
+                                child: CelebrityView(
+                                  duration: duration,
+                                ));
+                          },
+                        ));
                   },
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       Hero(
                           tag: celebrity.id,
-                          child: SizedBox.expand(child: Material(
+                          child: SizedBox.expand(
+                              child: Material(
                             elevation: 10,
-                            borderRadius: BorderRadius.circular(circularBorderRadius),
+                            borderRadius:
+                                BorderRadius.circular(circularBorderRadius),
                             child: ClipRRect(
-                                borderRadius: BorderRadius.circular(circularBorderRadius),
-                                child: Image.asset(celebrity.image,fit: BoxFit.cover,)),
+                                borderRadius:
+                                    BorderRadius.circular(circularBorderRadius),
+                                child: Image.asset(
+                                  celebrity.image,
+                                  fit: BoxFit.cover,
+                                )),
                           ))),
                       Positioned(
-                        left: SizeConfig.blockSizeHorizontal *3,
-                        top: SizeConfig.blockSizeHorizontal *4,
+                        left: SizeConfig.blockSizeHorizontal * 3,
+                        top: SizeConfig.blockSizeHorizontal * 4,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Hero(
                                 tag: "name-${celebrity.id}",
-                                child: Text(celebrity.name,style: Theme.of(context).textTheme.headline5.copyWith(fontSize: 18,color: Colors.white),)),
+                                child: Text(
+                                  celebrity.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                          fontSize: 18, color: Colors.white),
+                                )),
                             Hero(
                                 tag: "type-${celebrity.id}",
-                                child: Text(celebrity.type,style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.w300,fontSize: 13,color: Colors.white),)),
+                                child: Text(
+                                  celebrity.type,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .copyWith(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 13,
+                                          color: Colors.white),
+                                )),
                           ],
                         ),
                       ),
                       Positioned(
-                        right: SizeConfig.blockSizeHorizontal *3,
-                        top: SizeConfig.blockSizeHorizontal *4,
+                        right: SizeConfig.blockSizeHorizontal * 3,
+                        top: SizeConfig.blockSizeHorizontal * 4,
                         child: BuildIcon(
                           icon: MaterialCommunityIcons.dots_horizontal,
-                          onPressed: (){},
+                          onPressed: () {},
                         ),
                       ),
                       Positioned(
                         bottom: imageHeight * 0.1,
                         child: FavourableMatch(
-                          celebrity: celebrity,),
+                          celebrity: celebrity,
+                        ),
                       )
                     ],
                   ),
@@ -96,4 +121,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-

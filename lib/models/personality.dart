@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Personality{
+class Personality {
   final String title;
   final IconData yourIcon;
   final IconData partnerIcon;

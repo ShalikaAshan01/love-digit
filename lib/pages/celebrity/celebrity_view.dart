@@ -10,13 +10,14 @@ import 'components/celebrity_image_header.dart';
 
 class CelebrityView extends StatefulWidget {
   final Duration duration;
-  const CelebrityView({Key key,@required  this.duration}) : super(key: key);
+  const CelebrityView({Key key, @required this.duration}) : super(key: key);
   @override
   _CelebrityViewState createState() => _CelebrityViewState();
 }
 
-class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateMixin {
-  double imageHeight = SizeConfig.screenHeight  * 1.1;
+class _CelebrityViewState extends State<CelebrityView>
+    with TickerProviderStateMixin {
+  double imageHeight = SizeConfig.screenHeight * 1.1;
   final celebrity = Celebrity();
   final scrollController = ScrollController();
   bool showAppBarIcons = false;
@@ -25,26 +26,25 @@ class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-        duration: Duration(milliseconds: 300),
-        vsync: this
-    );
+    animationController =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
     //wait til hero animation finished
     Future.delayed(widget.duration).then((value) {
-      if(mounted)
+      if (mounted)
         setState(() {
           showAppBarIcons = true;
         });
       animationController.forward().orCancel;
-      scrollController.animateTo(SizeConfig.blockSizeVertical * 30, duration: Duration(seconds: 1), curve: Curves.ease);
+      scrollController.animateTo(SizeConfig.blockSizeVertical * 30,
+          duration: Duration(seconds: 1), curve: Curves.ease);
       scrollController.addListener(scrollListener);
-
     });
   }
+
   scrollListener() {
     if (scrollController.offset <= scrollController.position.minScrollExtent &&
         !scrollController.position.outOfRange) {
-      if(mounted){
+      if (mounted) {
         navigateBack();
       }
     }
@@ -73,15 +73,20 @@ class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateM
             Positioned(
               top: topPadding,
               left: horizontalPadding,
-              child: BuildIconAnimation(animationController: animationController, icon: MaterialCommunityIcons.chevron_down,
-                onPressed: ()=>navigateBack(),
+              child: BuildIconAnimation(
+                animationController: animationController,
+                icon: MaterialCommunityIcons.chevron_down,
+                onPressed: () => navigateBack(),
               ),
             ),
             Positioned(
               top: topPadding,
               right: horizontalPadding,
-              child: BuildIconAnimation(animationController: animationController,right: true, icon: MaterialCommunityIcons.dots_horizontal,
-              onPressed: (){},
+              child: BuildIconAnimation(
+                animationController: animationController,
+                right: true,
+                icon: MaterialCommunityIcons.dots_horizontal,
+                onPressed: () {},
               ),
             ),
           ],
@@ -91,22 +96,22 @@ class _CelebrityViewState extends State<CelebrityView> with TickerProviderStateM
   }
 
   Widget buildBody() {
-      return CustomScrollView(
-        controller: scrollController,
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          SliverPersistentHeader(
-              pinned: false,
-              floating: true,
-            delegate:CelebrityImageHeader(0, imageHeight,showAppBarIcons),
-          ),
-          SliverToBoxAdapter(
-              child: CelebrityContent()),
-        ],
+    return CustomScrollView(
+      controller: scrollController,
+      physics: BouncingScrollPhysics(),
+      slivers: [
+        SliverPersistentHeader(
+          pinned: false,
+          floating: true,
+          delegate: CelebrityImageHeader(0, imageHeight, showAppBarIcons),
+        ),
+        SliverToBoxAdapter(child: CelebrityContent()),
+      ],
     );
   }
-  Future<void> navigateBack()async{
+
+  Future<void> navigateBack() async {
     await animationController.reverse();
-    Navigator.pop(context);;
+    Navigator.pop(context);
   }
 }
