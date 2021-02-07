@@ -98,6 +98,16 @@ class HomeView extends StatelessWidget {
                           children: [
                             Hero(
                                 tag: "name-${celebrity.id}",
+                                flightShuttleBuilder: (flightContext, animation, flightDirection, fromHeroContext, toHeroContext) {
+                                  return Text(
+                                    celebrity.name,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline5
+                                        .copyWith(
+                                        fontSize: 18, color: Colors.white),
+                                  );
+                                },
                                 child: Text(
                                   celebrity.name,
                                   style: Theme.of(context)
@@ -108,6 +118,18 @@ class HomeView extends StatelessWidget {
                                 )),
                             Hero(
                                 tag: "type-${celebrity.id}",
+                                flightShuttleBuilder: (flightContext, animation, flightDirection, fromHeroContext, toHeroContext) {
+                                  return Text(
+                                    celebrity.type,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline6
+                                        .copyWith(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 13,
+                                        color: Colors.white),
+                                  );
+                                },
                                 child: Text(
                                   celebrity.type,
                                   style: Theme.of(context)

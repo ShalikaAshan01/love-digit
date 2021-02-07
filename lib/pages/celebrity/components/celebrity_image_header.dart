@@ -70,15 +70,17 @@ class CelebrityImageHeader extends SliverPersistentHeaderDelegate {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Hero(
-            tag: "name-${celebrity.id}",
-            child: Text(
-              celebrity.name,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  .copyWith(color: Colors.white),
-            )),
+        SizedBox(
+          child: Hero(
+              tag: "name-${celebrity.id}",
+              child: Text(
+                celebrity.name,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    .copyWith(color: Colors.white),
+              )),
+        ),
         Hero(
             tag: "type-${celebrity.id}",
             child: Text(
