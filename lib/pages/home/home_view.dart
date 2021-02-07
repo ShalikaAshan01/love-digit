@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
     final celebrity = Celebrity();
     final screenSize = MediaQuery.of(context).size;
     final aspectRatio = screenSize.aspectRatio;
-    final imageHeight = screenSize.height * 0.6;
+    final imageHeight = screenSize.height * 0.75;
     final imageWidth = imageHeight * aspectRatio;
     final duration = Duration(seconds: 1);
 
@@ -21,6 +21,22 @@ class HomeView extends StatelessWidget {
         return Future.value(false);
       },
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(MaterialCommunityIcons.account_outline),
+              label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(MaterialCommunityIcons.account_plus_outline),
+              label: 'Add a Partner',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(MaterialCommunityIcons.star_outline),
+              label: 'Celebrity',
+            ),
+          ],
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -52,6 +68,15 @@ class HomeView extends StatelessWidget {
                     children: [
                       Hero(
                           tag: celebrity.id,
+                          flightShuttleBuilder: (flightContext, animation, flightDirection, fromHeroContext, toHeroContext) {
+                            return ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(circularBorderRadius),
+                                child: Image.asset(
+                                  celebrity.image,
+                                  fit: BoxFit.cover,
+                                ));
+                          },
                           child: SizedBox.expand(
                               child: Material(
                             elevation: 10,
