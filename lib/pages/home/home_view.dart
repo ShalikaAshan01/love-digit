@@ -80,6 +80,7 @@ class HomeView extends StatelessWidget {
                           child: SizedBox.expand(
                               child: Material(
                             elevation: 10,
+                            type: MaterialType.transparency,
                             borderRadius:
                                 BorderRadius.circular(circularBorderRadius),
                             child: ClipRRect(
